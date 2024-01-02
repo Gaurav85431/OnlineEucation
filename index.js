@@ -10,6 +10,8 @@ const path = require('path');
 
 app.use(cors());
 
+/** */
+
 //user routes
 const user_route = require('./routes/userRoutes');
 
