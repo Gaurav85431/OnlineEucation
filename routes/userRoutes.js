@@ -18,11 +18,15 @@ user_routes.post('/login', user_controller.user_login);
 
 user_routes.post('/change-password/:token', auth, user_controller.resetpassword);
 
+// when we will forget then the get api of resetpassword open then after providing new
+//  password then submit meanwhile resetpassword post open.
+
 user_routes.get('/resetpassword', user_controller.emailforgot);
 
 user_routes.post('/resetpassword', user_controller.forgetuser);
 
 user_routes.post('/forgot-password', user_controller.forget_password);
+
 
 user_routes.get('/test', auth, function (req, res) {
   res.status(200).send({ success: true, msg: "Authenticated" })

@@ -179,7 +179,9 @@ const resetpassword = async (req, res) => {
   try {
 
 
-    const token = req.params.token;
+    // const token = req.params.token;
+    // const token = req.headers.authorization;
+    const token = req.query.token;
     const tokenData = await user.findOne({ token: token });
 
     if (tokenData) {
