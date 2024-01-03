@@ -180,8 +180,8 @@ const resetpassword = async (req, res) => {
 
 
     // const token = req.params.token;
-    // const token = req.headers.authorization;
-    const token = req.query.token;
+    const token = req.headers.authorization; // pass from header file authorization
+    // const token = req.query.token;   // pass token in url
     const tokenData = await user.findOne({ token: token });
 
     if (tokenData) {
