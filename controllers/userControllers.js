@@ -236,7 +236,7 @@ const sendresetpasswordmail = async (username, email, token) => {
       to: email,
       subject: 'For reset password',
       // html: '<p> Hii ' + username + ', please click the link and <a href= "http://127.0.0.1:3000/api/resetpassword">  reset your password </a>'
-      html: '<p> Hii ' + username + ', please click the link and <a href= "https://gauravlonexonlineeducation.onrender.com//api/resetpassword">  reset your password </a>'
+      html: '<p> Hii ' + username + ', please click the link and <a href= "https://gauravlonexonlineeducation2.onrender.com/api/resetpassword">  reset your password </a>'
     }
 
     transporter.sendMail(mailOption, function (error, info) {
