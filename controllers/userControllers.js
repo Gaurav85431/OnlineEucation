@@ -56,7 +56,7 @@ const register_user = async (req, res) => {
       mobile: req.body.mobile,
       password: spassword,
       confirmpassword: spassword,
-
+      token: ""
 
 
     });
@@ -139,6 +139,11 @@ const user_login = async (req, res) => {
 
         const tokenData = await create_token(userData._id);
 
+        const id = await userData._id;
+        const savetoken = await user.updateOne({ _id: id }, { $push: { token: tokenData } });
+
+
+
         const userResult = {
           _id: userData._id,
           name: userData.name,
@@ -179,6 +184,7 @@ const resetpassword = async (req, res) => {
   try {
 
 
+    // const token = req.headers['authorization'];
     // const token = req.params.token;
     const token = req.headers.authorization; // pass from header file authorization
     // const token = req.query.token;   // pass token in url
@@ -188,7 +194,7 @@ const resetpassword = async (req, res) => {
 
       const password = req.body.password;
 
-      const passwordmatch = await bcryptjs.compare(password, tokenData.password);
+      const passwordmatch = await bcyptjs.compare(password, tokenData.password);
       if (passwordmatch) {
         const new_password = req.body.newpassword;
         const confirmpassword = req.body.confirmpassword;
@@ -348,7 +354,34 @@ const forgetuser = async (req, res) => {
 }
 
 
-//
+
+// get user:
+
+const getuser = async (req, res) => {
+
+  try {
+
+    const data = await user.find();
+    const formattedData = data.map(item => ({
+
+      id: item._id,
+      name: item.name,
+      email: item.email,
+      mobile: item.mobile,
+      token: item.token
+
+    }))
+
+    // send formatted data as a response
+    res.status(200).json(formattedData);
+
+  } catch (error) {
+    res.status(400).send(error.message);
+
+  }
+
+}
+
 
 
 module.exports = {
@@ -357,6 +390,7 @@ module.exports = {
   forget_password,
   forgetuser,
   emailforgot,
-  resetpassword
+  resetpassword,
+  getuser
 
 }

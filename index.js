@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 const mongoose = require('mongoose');
-// mongoose.connect('mongodb://127.0.0.1:27017/myLonexRentalProject');
+// mongoose.connect('mongodb://127.0.0.1:27017/onlineeducation');
 
 const http = require('http');
 const cors = require('cors');
@@ -18,7 +18,7 @@ const user_route = require('./routes/userRoutes');
 app.use('/api', user_route)
 
 
-// app.listen(3000, function () {
+// app.listen(5000, function () {
 //   console.log("Server is ready");
 // })
 

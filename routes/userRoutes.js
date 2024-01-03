@@ -33,5 +33,9 @@ user_routes.get('/test', auth, function (req, res) {
 
 });
 
+
+user_routes.get('/get', user_controller.getuser);
+
+
 module.exports = user_routes;
 

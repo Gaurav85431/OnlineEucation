@@ -23,6 +23,10 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  token: {
+    type: Array,
+    //required: true
+  },
 
 
 });
